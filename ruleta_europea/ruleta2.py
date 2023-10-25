@@ -275,29 +275,18 @@ def apostar_linea(dinero_disponible, numero_ganador):
 
     return dinero_disponible, dinero_ganado, dinero_apostado
 
-caballos = {}
-
-def obtener_caballo(numero_caballo):
-    for fila in range(1, 13):
-        for columna in range(1, 4):
-            numero_actual = (fila - 1) * 3 + columna
-            if columna < 3:
-                # Caballo horizontal (dos números en la misma fila)
-                caballos[f'Caballo {numero_actual}-{numero_actual + 1}'] = [numero_actual, numero_actual + 1]
-            if fila < 12:
-                # Caballo vertical (dos números adyacentes en diferentes filas)
-                caballos[f'Caballo {numero_actual}-{numero_actual + 3}'] = [numero_actual, numero_actual + 3]
-    return caballos.get(numero_caballo, [])
+caballos = {'1-2': [1, 2], '1-4': [1, 4], '2-3': [2, 3], '2-5': [2, 5], '3-6': [3, 6], '4-5': [4, 5], '4-7': [4, 7], '5-6': [5, 6], '5-8': [5, 8], '6-9': [6, 9], '7-8': [7, 8], '7-10': [7, 10], '8-9': [8, 
+9], '8-11': [8, 11], '9-12': [9, 12], '10-11': [10, 11], '10-13': [10, 13], '11-12': [11, 12], '11-14': [11, 14], '12-15': [12, 15], '13-14': [13, 14], '13-16': [13, 16], '14-15': [14, 15], '14-17': [14, 17], '15-18': [15, 18], '16-17': [16, 17], '16-19': [16, 19], '17-18': [17, 18], '17-20': [17, 20], '18-21': [18, 21], '19-20': [19, 20], '19-22': [19, 22], '20-21': [20, 21], '20-23': [20, 23], '21-24': [21, 24], '22-23': [22, 23], '22-25': [22, 25], '23-24': [23, 24], '23-26': [23, 26], '24-27': [24, 27], '25-26': [25, 26], '25-28': [25, 28], '26-27': [26, 27], '26-29': [26, 29], '27-30': [27, 30], '28-29': [28, 29], '28-31': [28, 31], '29-30': [29, 30], '29-32': [29, 
+32], '30-33': [30, 33], '31-32': [31, 32], '31-34': [31, 34], '32-33': [32, 33], '32-35': [32, 35], '33-36': [33, 36], '34-35': [34, 35], '35-36': [35, 36]}
 
 def apostar_caballo(dinero_disponible, numero_ganador):
+    print(caballos.keys())
     numero_caballo = obtener_opcion_valida('Elige un caballo para apostar: ', list(caballos.keys()))
     dinero_apostado = int(input('Ingrese la cantidad a apostar: '))
 
-    caballo_seleccionado = obtener_caballo(numero_caballo)
-
     dinero_ganado = 0
 
-    if numero_ganador in caballo_seleccionado:
+    if numero_ganador == numero_caballo:
         dinero_ganado = dinero_apostado * 18
         dinero_disponible += dinero_ganado
     else:
@@ -347,14 +336,20 @@ if __name__ == '__main__':
                 print('0. Girar ruleta')
                 print('-' * 20)
 
-                opcion = int(input('Ingrese la opcion deseada: '))
+                opcion = input('Ingrese la opcion deseada: ')
                 print('-' * 20)
-                if opcion == 0:
-                    break  # Salir del bucle interno y girar la ruleta
-                if opcion < 0 or opcion > 12:
+                if opcion.isdigit():
+                    opcion = int(opcion)
+                    if opcion == 0:
+                        break  # Salir del bucle interno y girar la ruleta
+                    elif 0 < opcion <= 12:
+                        opciones_elegidas.append(opcion)
+                    else:
+                        print('Por favor, elija una opción válida.')
+                        print('-' * 20)
+                else:
                     print('Por favor, elija una opción válida.')
-                    continue
-                opciones_elegidas.append(opcion)
+                    print('-' * 20)
         
             numero_ganador = girar_ruleta()
             dinero_ganado_total = 0
