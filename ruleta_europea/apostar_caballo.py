@@ -13,11 +13,14 @@ class Caballo:
         dinero_apostado = int(input('Ingrese la cantidad a apostar: '))
 
         dinero_ganado = 0
-
-        if str(numero_ganador) in numero_caballo:
-            dinero_ganado = dinero_apostado * 18
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if str(numero_ganador) in numero_caballo:
+                dinero_ganado = dinero_apostado * 18
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
         
         return dinero_disponible, dinero_ganado, dinero_apostado

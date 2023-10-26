@@ -51,6 +51,7 @@ while dinero_disponible > 0:
         esquina = Esquina()
         caballo = Caballo()
         linea = Linea()
+
         numero_ganador = Ruleta.girar_ruleta()
         dinero_ganado_total = 0
         dinero_perdido = 0
@@ -88,6 +89,7 @@ while dinero_disponible > 0:
         print(f'El numero ganador es: {numero_ganador}')
         print(f'Dinero total ganado en esta apuesta: {dinero_ganado_total}')
         print(f'Dinero total perdido en esta apuesta: {dinero_perdido}')
+        dinero_disponible += dinero_ganado_total
         print(f'Dinero disponible: {dinero_disponible}')
         print('-' * 20)
     else:

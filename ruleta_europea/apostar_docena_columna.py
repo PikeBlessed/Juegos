@@ -7,14 +7,17 @@ class DocenaColumna:
         dinero_apostado = int(input('Ingrese la cantidad a apostar: '))
 
         dinero_ganado = 0
-
-        if (docena_elegida == 1 and numero_ganador in range(1, 13)) or \
-        (docena_elegida == 2 and numero_ganador in range(13, 25)) or \
-        (docena_elegida == 3 and numero_ganador in range(25, 37)):
-            dinero_ganado = dinero_apostado * 3
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if (docena_elegida == 1 and numero_ganador in range(1, 13)) or \
+            (docena_elegida == 2 and numero_ganador in range(13, 25)) or \
+            (docena_elegida == 3 and numero_ganador in range(25, 37)):
+                dinero_ganado = dinero_apostado * 3
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
 
         return dinero_disponible, dinero_ganado, dinero_apostado
 
@@ -33,12 +36,15 @@ class DocenaColumna:
         columna_seleccionada = self.obtener_columna(numero_columna)
 
         dinero_ganado = 0
-
-        if numero_ganador in columna_seleccionada:
-            dinero_ganado = dinero_apostado * 3
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if numero_ganador in columna_seleccionada:
+                dinero_ganado = dinero_apostado * 3
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
 
         return dinero_disponible, dinero_ganado, dinero_apostado
 
@@ -63,12 +69,15 @@ class DocenaColumna:
         doble_columna_seleccionada = self.obtener_doble_columna(numero_doble_columna)
 
         dinero_ganado = 0
-
-        if numero_ganador in doble_columna_seleccionada:
-            dinero_ganado = dinero_apostado * 1.5
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if numero_ganador in doble_columna_seleccionada:
+                dinero_ganado = dinero_apostado * 1.5
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
         
         return dinero_disponible, dinero_ganado, dinero_apostado
 
@@ -77,13 +86,16 @@ class DocenaColumna:
         dinero_apostado = int(input('Ingrese la cantidad a apostar: ')) 
 
         dinero_ganado = 0
-
-        if (doble_docena_elegida == 1 and numero_ganador in range(1, 25)) or \
-        (doble_docena_elegida == 2 and numero_ganador in range(13, 37)) or \
-        (doble_docena_elegida == 3 and (numero_ganador in range(25, 37) or numero_ganador in range(1, 13))):
-            dinero_ganado = dinero_apostado * 1.5
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if (doble_docena_elegida == 1 and numero_ganador in range(1, 25)) or \
+            (doble_docena_elegida == 2 and numero_ganador in range(13, 37)) or \
+            (doble_docena_elegida == 3 and (numero_ganador in range(25, 37) or numero_ganador in range(1, 13))):
+                dinero_ganado = dinero_apostado * 1.5
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
         
         return dinero_disponible, dinero_ganado, dinero_apostado   

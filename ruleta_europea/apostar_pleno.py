@@ -8,11 +8,14 @@ class Pleno:
         dinero_apostado = int(input('Ingrese la cantidad a apostar: '))
 
         dinero_ganado = 0
-
-        if numero_ganador == numero_elegido:
-            dinero_ganado = dinero_apostado * 36
-            dinero_disponible += dinero_ganado
+        if dinero_apostado > dinero_disponible:
+            print("No puedes apostar más dinero del que tienes disponible.")
+            return dinero_disponible, 0, 0
         else:
-            dinero_disponible -= dinero_apostado
+            if numero_ganador == numero_elegido:
+                dinero_ganado = dinero_apostado * 36
+                dinero_disponible += dinero_ganado
+            else:
+                dinero_disponible -= dinero_apostado
 
         return dinero_disponible, dinero_ganado, dinero_apostado
