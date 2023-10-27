@@ -54,42 +54,44 @@ while dinero_disponible > 0:
 
         numero_ganador = Ruleta.girar_ruleta()
         dinero_ganado_total = 0
-        dinero_perdido = 0
+        dinero_perdido_total = 0
         for opcion in opciones_elegidas:
             if opcion == 1:
-                dinero_disponible, dinero_ganado, dinero_apostado = CuarentaPorciento.apostar_par_impar(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = CuarentaPorciento.apostar_par_impar(dinero_disponible, numero_ganador)
             elif opcion == 2:
-                dinero_disponible, dinero_ganado, dinero_apostado = CuarentaPorciento.apostar_color(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = CuarentaPorciento.apostar_color(dinero_disponible, numero_ganador)
             elif opcion == 3:
-                dinero_disponible, dinero_ganado, dinero_apostado = CuarentaPorciento.apostar_falta_pasa(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = CuarentaPorciento.apostar_falta_pasa(dinero_disponible, numero_ganador)
             elif opcion == 4:
-                dinero_disponible, dinero_ganado, dinero_apostado = DocenaColumna.apostar_docena(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = DocenaColumna.apostar_docena(dinero_disponible, numero_ganador)
             elif opcion == 5:
-                dinero_disponible, dinero_ganado, dinero_apostado = docena_columna.apostar_columna(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = docena_columna.apostar_columna(dinero_disponible, numero_ganador)
             elif opcion == 6:
-                dinero_disponible, dinero_ganado, dinero_apostado = docena_columna.apostar_doble_columa(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = docena_columna.apostar_doble_columa(dinero_disponible, numero_ganador)
             elif opcion == 7:
-                dinero_disponible, dinero_ganado, dinero_apostado = DocenaColumna.apostar_doble_docena(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = DocenaColumna.apostar_doble_docena(dinero_disponible, numero_ganador)
             elif opcion == 8:
-                dinero_disponible, dinero_ganado, dinero_apostado = Seisena.apostar_seisena(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = Seisena.apostar_seisena(dinero_disponible, numero_ganador)
             elif opcion == 9:
-                dinero_disponible, dinero_ganado, dinero_apostado = esquina.apostar_esquina(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = esquina.apostar_esquina(dinero_disponible, numero_ganador)
             elif opcion == 10:
-                dinero_disponible, dinero_ganado, dinero_apostado = linea.apostar_linea(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = linea.apostar_linea(dinero_disponible, numero_ganador)
             elif opcion == 11:
-                dinero_disponible, dinero_ganado, dinero_apostado = caballo.apostar_caballo(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = caballo.apostar_caballo(dinero_disponible, numero_ganador)
             elif opcion == 12:
-                dinero_disponible, dinero_ganado, dinero_apostado = Pleno.apostar_numero(dinero_disponible, numero_ganador)
+                dinero_disponible, dinero_ganado, dinero_perdido = Pleno.apostar_numero(dinero_disponible, numero_ganador)
             else:
                 print('Por favor elija una opcion correcta')
-            dinero_perdido -= dinero_apostado
             dinero_ganado_total += dinero_ganado
+            dinero_perdido_total += dinero_perdido
             
         print('-' * 20)
         print(f'El numero ganador es: {numero_ganador}')
         print(f'Dinero total ganado en esta apuesta: {dinero_ganado_total}')
-        print(f'Dinero total perdido en esta apuesta: {dinero_perdido}')
-        dinero_disponible += dinero_ganado_total
+        print(f'Dinero total perdido en esta apuesta: {dinero_perdido_total}')
+        dinero_disponible = dinero_disponible + dinero_ganado_total + dinero_perdido_total
+        resumen = dinero_ganado_total + dinero_perdido_total
+        print(f'Resumen de la ronda: {resumen}')
         print(f'Dinero disponible: {dinero_disponible}')
         print('-' * 20)
     else:

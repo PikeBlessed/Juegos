@@ -8,6 +8,7 @@ class Seisena:
 
 
         dinero_ganado = 0
+        dinero_perdido = 0
         if dinero_apostado > dinero_disponible:
             print("No puedes apostar más dinero del que tienes disponible.")
             return dinero_disponible, 0, 0
@@ -19,8 +20,7 @@ class Seisena:
             (seisena_elegida == 5 and numero_ganador in range(25, 31)) or \
             (seisena_elegida == 6 and numero_ganador in range(31, 37)):
                 dinero_ganado = dinero_apostado * 6
-                dinero_disponible += dinero_ganado
             else:
-                dinero_disponible -= dinero_apostado
+                dinero_perdido -= dinero_apostado
 
-        return dinero_disponible, dinero_ganado, dinero_apostado
+        return dinero_disponible, dinero_ganado, dinero_perdido

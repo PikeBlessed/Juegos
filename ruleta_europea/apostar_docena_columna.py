@@ -7,6 +7,7 @@ class DocenaColumna:
         dinero_apostado = int(input('Ingrese la cantidad a apostar: '))
 
         dinero_ganado = 0
+        dinero_perdido = 0
         if dinero_apostado > dinero_disponible:
             print("No puedes apostar más dinero del que tienes disponible.")
             return dinero_disponible, 0, 0
@@ -15,11 +16,10 @@ class DocenaColumna:
             (docena_elegida == 2 and numero_ganador in range(13, 25)) or \
             (docena_elegida == 3 and numero_ganador in range(25, 37)):
                 dinero_ganado = dinero_apostado * 3
-                dinero_disponible += dinero_ganado
             else:
-                dinero_disponible -= dinero_apostado
+                dinero_perdido -= dinero_apostado
 
-        return dinero_disponible, dinero_ganado, dinero_apostado
+        return dinero_disponible, dinero_ganado, dinero_perdido
 
     def obtener_columna(self, numero_columna):
         columnas = {
@@ -36,17 +36,17 @@ class DocenaColumna:
         columna_seleccionada = self.obtener_columna(numero_columna)
 
         dinero_ganado = 0
+        dinero_perdido = 0
         if dinero_apostado > dinero_disponible:
             print("No puedes apostar más dinero del que tienes disponible.")
             return dinero_disponible, 0, 0
         else:
             if numero_ganador in columna_seleccionada:
                 dinero_ganado = dinero_apostado * 3
-                dinero_disponible += dinero_ganado
             else:
-                dinero_disponible -= dinero_apostado
+                dinero_perdido -= dinero_apostado
 
-        return dinero_disponible, dinero_ganado, dinero_apostado
+        return dinero_disponible, dinero_ganado, dinero_perdido
 
     def obtener_doble_columna(self, numero_doble_columna):
         columnas = {
@@ -69,23 +69,24 @@ class DocenaColumna:
         doble_columna_seleccionada = self.obtener_doble_columna(numero_doble_columna)
 
         dinero_ganado = 0
+        dinero_perdido = 0
         if dinero_apostado > dinero_disponible:
             print("No puedes apostar más dinero del que tienes disponible.")
             return dinero_disponible, 0, 0
         else:
             if numero_ganador in doble_columna_seleccionada:
                 dinero_ganado = dinero_apostado * 1.5
-                dinero_disponible += dinero_ganado
             else:
-                dinero_disponible -= dinero_apostado
+                dinero_perdido -= dinero_apostado
         
-        return dinero_disponible, dinero_ganado, dinero_apostado
+        return dinero_disponible, dinero_ganado, dinero_perdido
 
     def apostar_doble_docena(dinero_disponible, numero_ganador):
         doble_docena_elegida = Ruleta.obtener_opcion_valida('Elige la doble docena a la que quieres apostar (1, 2, 3): ', [1, 2, 3])
         dinero_apostado = int(input('Ingrese la cantidad a apostar: ')) 
 
         dinero_ganado = 0
+        dinero_perdido = 0
         if dinero_apostado > dinero_disponible:
             print("No puedes apostar más dinero del que tienes disponible.")
             return dinero_disponible, 0, 0
@@ -94,8 +95,7 @@ class DocenaColumna:
             (doble_docena_elegida == 2 and numero_ganador in range(13, 37)) or \
             (doble_docena_elegida == 3 and (numero_ganador in range(25, 37) or numero_ganador in range(1, 13))):
                 dinero_ganado = dinero_apostado * 1.5
-                dinero_disponible += dinero_ganado
             else:
-                dinero_disponible -= dinero_apostado
+                dinero_perdido -= dinero_apostado
         
-        return dinero_disponible, dinero_ganado, dinero_apostado   
+        return dinero_disponible, dinero_ganado, dinero_perdido  
